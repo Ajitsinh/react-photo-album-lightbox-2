@@ -35,5 +35,15 @@ export default function App() {
         plugins={[Fullscreen, Slideshow, Zoom]}
       />
     </>
+
+      <SortableGallery
+        gallery={RowsPhotoAlbum}
+        spacing={16}
+        padding={10}
+        photos={photos}
+        movePhoto={(oldIndex, newIndex) => setPhotos(arrayMove(photos, oldIndex, newIndex))}
+      />
+
+
   );
 }
