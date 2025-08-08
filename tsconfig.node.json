@@ -1,0 +1,9 @@
+// tsconfig.node.json
+{
+  "compilerOptions": {
+    "module": "CommonJS",
+    "outDir": "dist",
+    "target": "es2020",
+    "types": ["node"]
+  }
+}
