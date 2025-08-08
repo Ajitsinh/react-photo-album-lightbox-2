@@ -13,37 +13,41 @@ import "yet-another-react-lightbox/styles.css";
 // import optional lightbox plugins
 import Fullscreen from "yet-another-react-lightbox/plugins/fullscreen";
 import Slideshow from "yet-another-react-lightbox/plugins/slideshow";
-//import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
+// import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
 import Zoom from "yet-another-react-lightbox/plugins/zoom";
-//import "yet-another-react-lightbox/plugins/thumbnails.css";
+// import "yet-another-react-lightbox/plugins/thumbnails.css";
 
 import photos from "./photos";
 
 export default function App() {
   const [index, setIndex] = useState(-1);
+  const [photoList, setPhotoList] = useState(photos);
 
   return (
     <>
-      <RowsPhotoAlbum photos={photos} targetRowHeight={150} onClick={({ index }) => setIndex(index)} />
+      <RowsPhotoAlbum
+        photos={photoList}
+        targetRowHeight={150}
+        onClick={({ index }) => setIndex(index)}
+      />
 
       <Lightbox
-        slides={photos}
+        slides={photoList}
         open={index >= 0}
         index={index}
         close={() => setIndex(-1)}
-        // enable optional lightbox plugins
         plugins={[Fullscreen, Slideshow, Zoom]}
       />
-    </>
 
       <SortableGallery
         gallery={RowsPhotoAlbum}
         spacing={16}
         padding={10}
-        photos={photos}
-        movePhoto={(oldIndex, newIndex) => setPhotos(arrayMove(photos, oldIndex, newIndex))}
+        photos={photoList}
+        movePhoto={(oldIndex, newIndex) =>
+          setPhotoList(arrayMove(photoList, oldIndex, newIndex))
+        }
       />
-
-
+    </>
   );
 }
